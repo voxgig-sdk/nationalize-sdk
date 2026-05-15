@@ -1,0 +1,63 @@
+# Entity: predict_nationality
+
+main: kit: entity: predict_nationality: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "country"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "predict_nationality"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "apikey"
+                orig: "apikey"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "name"
+                orig: "name"
+                reqd: true
+                type: "`$ARRAY`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/"
+          select: {
+            exist: [
+              "apikey"
+              "name"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

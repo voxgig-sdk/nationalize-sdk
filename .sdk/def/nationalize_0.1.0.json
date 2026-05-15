@@ -1,0 +1,287 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Nationalize API",
+    "description": "A simple API that estimates the nationality of a person based on a last name.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "info@genderize.io"
+    },
+    "termsOfService": "https://nationalize.io/terms"
+  },
+  "servers": [
+    {
+      "url": "https://api.nationalize.io",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Predict nationality from name",
+        "description": "Predicts the nationality of a person based on their last name. Returns a list of countries with probability scores. Supports both single and batch requests (up to 10 names).",
+        "operationId": "predictNationality",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The name to predict nationality for. Can be provided multiple times for batch requests (up to 10 names).",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "maxItems": 10
+            },
+            "style": "form",
+            "explode": true
+          },
+          {
+            "name": "apikey",
+            "in": "query",
+            "description": "API key for authentication. Required for more than 100 requests per day.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful prediction response",
+            "headers": {
+              "X-Rate-Limit-Limit": {
+                "description": "The total amount of names available in the current time window",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Remaining": {
+                "description": "The remaining amount of names available in the current time window",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Rate-Limit-Reset": {
+                "description": "Seconds remaining until a new time window opens",
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/NationalityPrediction"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/NationalityPrediction"
+                      }
+                    }
+                  ]
+                },
+                "examples": {
+                  "singleName": {
+                    "summary": "Single name prediction",
+                    "value": {
+                      "name": "johnson",
+                      "country": [
+                        {
+                          "country_id": "US",
+                          "probability": 0.65
+                        },
+                        {
+                          "country_id": "GB",
+                          "probability": 0.25
+                        }
+                      ]
+                    }
+                  },
+                  "batchNames": {
+                    "summary": "Batch prediction",
+                    "value": [
+                      {
+                        "name": "johnson",
+                        "country": [
+                          {
+                            "country_id": "US",
+                            "probability": 0.65
+                          }
+                        ]
+                      },
+                      {
+                        "name": "schmidt",
+                        "country": [
+                          {
+                            "country_id": "DE",
+                            "probability": 0.78
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "Invalid API key"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required - Subscription is not active",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "Subscription is not active"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content - Invalid or missing name parameter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "missingName": {
+                    "summary": "Missing name parameter",
+                    "value": {
+                      "error": "Missing 'name' parameter"
+                    }
+                  },
+                  "invalidName": {
+                    "summary": "Invalid name parameter",
+                    "value": {
+                      "error": "Invalid 'name' parameter"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "limitReached": {
+                    "summary": "Request limit reached",
+                    "value": {
+                      "error": "Request limit reached"
+                    }
+                  },
+                  "limitTooLow": {
+                    "summary": "Request limit too low",
+                    "value": {
+                      "error": "Request limit too low to process request"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NationalityPrediction": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The processed name"
+          },
+          "country": {
+            "type": "array",
+            "description": "List of countries with their probability scores",
+            "items": {
+              "$ref": "#/components/schemas/CountryPrediction"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "country"
+        ]
+      },
+      "CountryPrediction": {
+        "type": "object",
+        "properties": {
+          "country_id": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code",
+            "pattern": "^[A-Z]{2}$"
+          },
+          "probability": {
+            "type": "number",
+            "format": "float",
+            "description": "The probability that the name belongs to this country",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "required": [
+          "country_id",
+          "probability"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message describing what went wrong"
+          }
+        },
+        "required": [
+          "error"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "apikey",
+        "description": "API key for authentication. Free tier allows 100 requests per day. Paid subscriptions available for higher limits."
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Nationality Prediction",
+      "description": "Endpoints for predicting nationality based on names"
+    }
+  ],
+  "externalDocs": {
+    "description": "Full API Documentation",
+    "url": "https://nationalize.io/documentation"
+  }
+}

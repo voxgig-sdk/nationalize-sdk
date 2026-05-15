@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "predict_nationality": {
+      "PREDICT_NATIONALITY00": {
+        "country": [],
+        "name": "s15"
+      },
+      "PREDICT_NATIONALITY01": {
+        "country": [],
+        "name": "s29"
+      },
+      "PREDICT_NATIONALITY02": {
+        "country": [],
+        "name": "s3d"
+      }
+    }
+  },
+  "new": {
+    "predict_nationality": {
+      "predict_nationality_ref01": {
+        "country": [],
+        "name": "s51"
+      }
+    }
+  }
+}

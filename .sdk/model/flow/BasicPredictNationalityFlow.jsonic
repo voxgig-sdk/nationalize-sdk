@@ -1,0 +1,28 @@
+# BasicPredictNationalityFlow
+
+main: kit: flow: BasicPredictNationalityFlow:
+{
+  entity: "predict_nationality",
+  kind: "basic",
+  name: "BasicPredictNationalityFlow",
+  step: [
+    {
+      input: {
+        ref: "predict_nationality_ref01",
+        srcdatavar: "predict_nationality_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-predict_nationality_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPredictNationalityFlow"
+}

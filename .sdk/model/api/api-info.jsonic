@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "info@genderize.io"
+      }
+      description: "A simple API that estimates the nationality of a person based on a last name."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.nationalize.io"
+        }
+      ]
+      termsOfService: "https://nationalize.io/terms"
+      title: "Nationalize API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}
