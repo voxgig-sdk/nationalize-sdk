@@ -1,10 +1,10 @@
 package voxgignationalizesdk
 
 import (
-	"github.com/voxgig-sdk/nationalize-sdk/core"
-	"github.com/voxgig-sdk/nationalize-sdk/entity"
-	"github.com/voxgig-sdk/nationalize-sdk/feature"
-	_ "github.com/voxgig-sdk/nationalize-sdk/utility"
+	"github.com/voxgig-sdk/nationalize-sdk/go/core"
+	"github.com/voxgig-sdk/nationalize-sdk/go/entity"
+	"github.com/voxgig-sdk/nationalize-sdk/go/feature"
+	_ "github.com/voxgig-sdk/nationalize-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

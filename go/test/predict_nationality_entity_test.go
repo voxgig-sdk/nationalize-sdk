@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/nationalize-sdk"
-	"github.com/voxgig-sdk/nationalize-sdk/core"
+	sdk "github.com/voxgig-sdk/nationalize-sdk/go"
+	"github.com/voxgig-sdk/nationalize-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/nationalize-sdk/go/utility/struct"
 )
 
 func TestPredictNationalityEntity(t *testing.T) {

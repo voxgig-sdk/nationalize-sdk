@@ -3,15 +3,18 @@
     "predict_nationality": {
       "PREDICT_NATIONALITY00": {
         "country": [],
-        "name": "s15"
+        "name": "s15",
+        "id": "PREDICT_NATIONALITY00"
       },
       "PREDICT_NATIONALITY01": {
         "country": [],
-        "name": "s29"
+        "name": "s29",
+        "id": "PREDICT_NATIONALITY01"
       },
       "PREDICT_NATIONALITY02": {
         "country": [],
-        "name": "s3d"
+        "name": "s3d",
+        "id": "PREDICT_NATIONALITY02"
       }
     }
   },

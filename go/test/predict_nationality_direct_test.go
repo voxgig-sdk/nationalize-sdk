@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/nationalize-sdk"
-	"github.com/voxgig-sdk/nationalize-sdk/core"
+	sdk "github.com/voxgig-sdk/nationalize-sdk/go"
+	"github.com/voxgig-sdk/nationalize-sdk/go/core"
 )
 
 func TestPredictNationalityDirect(t *testing.T) {
