@@ -74,14 +74,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'NATIONALIZE_TEST_PREDICT_NATIONALITY_ENTID': {},
     'NATIONALIZE_TEST_LIVE': 'FALSE',
-    'NATIONALIZE_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.NATIONALIZE_TEST_LIVE
 
   if (live) {
     const client = new NationalizeSDK({
-      apikey: env.NATIONALIZE_APIKEY,
     })
 
     let idmap: any = env['NATIONALIZE_TEST_PREDICT_NATIONALITY_ENTID']

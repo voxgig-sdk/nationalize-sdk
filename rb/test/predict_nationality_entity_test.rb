@@ -82,7 +82,6 @@ def predict_nationality_basic_setup(extra)
     "NATIONALIZE_TEST_PREDICT_NATIONALITY_ENTID" => idmap,
     "NATIONALIZE_TEST_LIVE" => "FALSE",
     "NATIONALIZE_TEST_EXPLAIN" => "FALSE",
-    "NATIONALIZE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +93,6 @@ def predict_nationality_basic_setup(extra)
   if env["NATIONALIZE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["NATIONALIZE_APIKEY"],
       },
       extra || {},
     ])

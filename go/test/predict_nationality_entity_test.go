@@ -117,7 +117,6 @@ func predict_nationalityBasicSetup(extra map[string]any) *entityTestSetup {
 		"NATIONALIZE_TEST_PREDICT_NATIONALITY_ENTID": idmap,
 		"NATIONALIZE_TEST_LIVE":      "FALSE",
 		"NATIONALIZE_TEST_EXPLAIN":   "FALSE",
-		"NATIONALIZE_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["NATIONALIZE_TEST_PREDICT_NATIONALITY_ENTID"])
@@ -128,7 +127,6 @@ func predict_nationalityBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["NATIONALIZE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["NATIONALIZE_APIKEY"],
 			},
 			extra,
 		})
