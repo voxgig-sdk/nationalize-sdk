@@ -10,7 +10,7 @@ The Python SDK for the Nationalize API — an entity-oriented client following P
 
 ## Install
 ```bash
-pip install nationalize-sdk
+pip install voxgig-sdk-nationalize
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The TypeScript SDK for the Nationalize API — a type-safe, entity-oriented clie
 
 ## Install
 ```bash
-npm install nationalize
+npm install @voxgig-sdk/nationalize
 ```
 ## Tutorial: your first API call
 

@@ -10,13 +10,13 @@ The Ruby SDK for the Nationalize API — an entity-oriented client using idiomat
 
 ## Install
 ```bash
-gem install nationalize-sdk
+gem install voxgig-sdk-nationalize
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "nationalize-sdk"
+gem "voxgig-sdk-nationalize"
 ```
 
 Then run:
