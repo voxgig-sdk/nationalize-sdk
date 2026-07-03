@@ -14,6 +14,9 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://api.nationalize.io",
+			"auth": map[string]any{
+				"prefix": "Bearer",
+			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -25,48 +28,51 @@ func MakeConfig() map[string]any {
 			"predict_nationality": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "country",
 						"req": false,
 						"type": "`$ARRAY`",
-						"active": true,
 						"index$": 0,
 					},
 					map[string]any{
+						"active": true,
 						"name": "name",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 1,
 					},
 				},
 				"name": "predict_nationality",
 				"op": map[string]any{
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "apikey",
 											"orig": "apikey",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "name",
 											"orig": "name",
 											"reqd": true,
 											"type": "`$ARRAY`",
-											"active": true,
 										},
 									},
 								},
 								"method": "GET",
 								"orig": "/",
+								"parts": []any{},
 								"select": map[string]any{
 									"exist": []any{
 										"apikey",
@@ -77,12 +83,9 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"parts": []any{},
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},

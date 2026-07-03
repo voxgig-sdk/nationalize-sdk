@@ -59,12 +59,14 @@ def _predict_nationality_direct_setup(mockres):
     env = runner.env_override({
         "NATIONALIZE_TEST_PREDICT_NATIONALITY_ENTID": {},
         "NATIONALIZE_TEST_LIVE": "FALSE",
+        "NATIONALIZE_APIKEY": "NONE",
     })
 
     live = env.get("NATIONALIZE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("NATIONALIZE_APIKEY"),
         }
         client = NationalizeSDK(merged_opts)
         return {

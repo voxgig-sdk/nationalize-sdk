@@ -99,12 +99,14 @@ func predict_nationalityDirectSetup(mockres any) *predict_nationalityDirectSetup
 	env := envOverride(map[string]any{
 		"NATIONALIZE_TEST_PREDICT_NATIONALITY_ENTID": map[string]any{},
 		"NATIONALIZE_TEST_LIVE":    "FALSE",
+		"NATIONALIZE_APIKEY":       "NONE",
 	})
 
 	live := env["NATIONALIZE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["NATIONALIZE_APIKEY"],
 		}
 		client := sdk.NewNationalizeSDK(mergedOpts)
 

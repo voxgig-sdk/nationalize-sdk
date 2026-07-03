@@ -17,27 +17,7 @@ main: {
       termsOfService: "https://nationalize.io/terms"
       title: "Nationalize API"
       version: "1.0.0"
-      tagline: "Estimate the likely nationality of a person from their name"
-      homepage: "https://nationalize.io/"
-      docs_url: "https://nationalize.io/"
-      license_short: "Commercial API with a free tier; paid plans required beyond the monthly quota."
-      license_md: `- Operated as a commercial service by Demografix ApS (Denmark).
-- Free tier available without a credit card; paid plans for higher volume.
-- No public licence is published for the returned data; treat results as for use within the service's terms.
-- Check the homepage for the current pricing and terms before redistributing predictions.`
-      about_md: `[Nationalize.io](https://nationalize.io/) predicts the likely nationality of a person from their name by matching against a large dataset of names and self-reported country information. The service is operated by Demografix ApS in Denmark, which also runs the sister APIs [Agify](https://agify.io/) and [Genderize](https://genderize.io/).
-
-What you get from the API:
-
-- A ranked list of country codes with probability scores for a given name.
-- Support for diacritics, accents, and non-Latin alphabets.
-- Optional geographic scoping to narrow predictions to a subset of countries.
-
-The API is hosted at \`https://api.nationalize.io\` and is CORS-enabled, making it usable directly from browser code. A free tier allows a limited number of name lookups per day or month; higher volumes and commercial use require a paid plan and API key. Predictions are statistical estimates and should not be used as authoritative identifiers for individuals.`
-      entity_desc: {
-        predict_nationality: "Nationality prediction for a single name; call the root endpoint with a `name` query parameter, e.g. `GET /?name=bock`, to receive an array of country codes with probabilities."
-      }
-      auth: false
     }
   }
 }
+

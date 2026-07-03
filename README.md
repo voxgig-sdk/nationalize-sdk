@@ -1,20 +1,8 @@
 # Nationalize SDK
 
-Estimate the likely nationality of a person from their name
+Nationalize API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Nationalize API
-
-[Nationalize.io](https://nationalize.io/) predicts the likely nationality of a person from their name by matching against a large dataset of names and self-reported country information. The service is operated by Demografix ApS in Denmark, which also runs the sister APIs [Agify](https://agify.io/) and [Genderize](https://genderize.io/).
-
-What you get from the API:
-
-- A ranked list of country codes with probability scores for a given name.
-- Support for diacritics, accents, and non-Latin alphabets.
-- Optional geographic scoping to narrow predictions to a subset of countries.
-
-The API is hosted at `https://api.nationalize.io` and is CORS-enabled, making it usable directly from browser code. A free tier allows a limited number of name lookups per day or month; higher volumes and commercial use require a paid plan and API key. Predictions are statistical estimates and should not be used as authoritative identifiers for individuals.
 
 ## Try it
 
@@ -48,27 +36,31 @@ gem install nationalize-sdk
 luarocks install nationalize-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { NationalizeSDK } from 'nationalize'
 
-const client = new NationalizeSDK({})
+const client = new NationalizeSDK({
+  apikey: process.env.NATIONALIZE_APIKEY,
+})
 
+// Load predictnationality data
+const predictnationality = await client.PredictNationality().load({})
+console.log(predictnationality.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -98,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **PredictNationality** | Nationality prediction for a single name; call the root endpoint with a `name` query parameter, e.g. `GET /?name=bock`, to receive an array of country codes with probabilities. | `/` |
+| **PredictNationality** |  | `/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -108,15 +100,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from nationalize_sdk import NationalizeSDK
 
-client = NationalizeSDK({})
+client = NationalizeSDK({
+    "apikey": os.environ.get("NATIONALIZE_APIKEY"),
+})
 
 
 # Load a specific predictnationality
-predictnationality, err = client.PredictNationality(None).load(
-    {"id": "example_id"}, None
-)
+predictnationality, err = client.PredictNationality().load({"id": "example_id"})
+print(predictnationality)
 ```
 
 ### PHP
@@ -125,13 +119,14 @@ predictnationality, err = client.PredictNationality(None).load(
 <?php
 require_once 'nationalize_sdk.php';
 
-$client = new NationalizeSDK([]);
+$client = new NationalizeSDK([
+    "apikey" => getenv("NATIONALIZE_APIKEY"),
+]);
 
 
 // Load a specific predictnationality
-[$predictnationality, $err] = $client->PredictNationality(null)->load(
-    ["id" => "example_id"], null
-);
+[$predictnationality, $err] = $client->PredictNationality()->load(["id" => "example_id"]);
+print_r($predictnationality);
 ```
 
 ### Golang
@@ -139,8 +134,13 @@ $client = new NationalizeSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/nationalize-sdk/go"
 
-client := sdk.NewNationalizeSDK(map[string]any{})
+client := sdk.NewNationalizeSDK(map[string]any{
+    "apikey": os.Getenv("NATIONALIZE_APIKEY"),
+})
 
+// Load predictnationality data
+predictnationality, err := client.PredictNationality(nil).Load(map[string]any{}, nil)
+fmt.Println(predictnationality)
 ```
 
 ### Ruby
@@ -148,13 +148,14 @@ client := sdk.NewNationalizeSDK(map[string]any{})
 ```ruby
 require_relative "Nationalize_sdk"
 
-client = NationalizeSDK.new({})
+client = NationalizeSDK.new({
+  "apikey" => ENV["NATIONALIZE_APIKEY"],
+})
 
 
 # Load a specific predictnationality
-predictnationality, err = client.PredictNationality(nil).load(
-  { "id" => "example_id" }, nil
-)
+predictnationality, err = client.PredictNationality().load({ "id" => "example_id" })
+puts predictnationality
 ```
 
 ### Lua
@@ -162,13 +163,14 @@ predictnationality, err = client.PredictNationality(nil).load(
 ```lua
 local sdk = require("nationalize_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("NATIONALIZE_APIKEY"),
+})
 
 
 -- Load a specific predictnationality
-local predictnationality, err = client:PredictNationality(nil):load(
-  { id = "example_id" }, nil
-)
+local predictnationality, err = client:PredictNationality():load({ id = "example_id" })
+print(predictnationality)
 ```
 
 ## Unit testing in offline mode
@@ -187,25 +189,21 @@ const result = await client.PredictNationality().load({ id: 'test01' })
 ### Python
 
 ```python
-client = NationalizeSDK.test(None, None)
-result, err = client.PredictNationality(None).load(
-    {"id": "test01"}, None
-)
+client = NationalizeSDK.test()
+result, err = client.PredictNationality().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = NationalizeSDK::test(null, null);
-[$result, $err] = $client->PredictNationality(null)->load(
-    ["id" => "test01"], null
-);
+$client = NationalizeSDK::test();
+[$result, $err] = $client->PredictNationality()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.PredictNationality(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -214,19 +212,15 @@ result, err := client.PredictNationality(nil).Load(
 ### Ruby
 
 ```ruby
-client = NationalizeSDK.test(nil, nil)
-result, err = client.PredictNationality(nil).load(
-  { "id" => "test01" }, nil
-)
+client = NationalizeSDK.test
+result, err = client.PredictNationality().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:PredictNationality(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:PredictNationality():load({ id = "test01" })
 ```
 
 ## How it works
@@ -330,15 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Nationalize API
-
-- Upstream: [https://nationalize.io/](https://nationalize.io/)
-
-- Operated as a commercial service by Demografix ApS (Denmark).
-- Free tier available without a credit card; paid plans for higher volume.
-- No public licence is published for the returned data; treat results as for use within the service's terms.
-- Check the homepage for the current pricing and terms before redistributing predictions.
 
 ---
 

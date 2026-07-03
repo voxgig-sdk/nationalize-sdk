@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://api.nationalize.io',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -55,48 +59,51 @@ class Config {
     "predict_nationality": {
       "fields": [
         {
+          "active": true,
           "name": "country",
           "req": false,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 1
         }
       ],
       "name": "predict_nationality",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "apikey",
                     "orig": "apikey",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "name",
                     "orig": "name",
                     "reqd": true,
-                    "type": "`$ARRAY`",
-                    "active": true
+                    "type": "`$ARRAY`"
                   }
                 ]
               },
               "method": "GET",
               "orig": "/",
+              "parts": [],
               "select": {
                 "exist": [
                   "apikey",
@@ -107,12 +114,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "parts": [],
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },

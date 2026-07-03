@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://api.nationalize.io",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -26,48 +29,51 @@ def make_config():
       "predict_nationality": {
         "fields": [
           {
+            "active": True,
             "name": "country",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "name",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 1,
           },
         ],
         "name": "predict_nationality",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "apikey",
                       "orig": "apikey",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "name",
                       "orig": "name",
                       "reqd": True,
                       "type": "`$ARRAY`",
-                      "active": True,
                     },
                   ],
                 },
                 "method": "GET",
                 "orig": "/",
+                "parts": [],
                 "select": {
                   "exist": [
                     "apikey",
@@ -78,12 +84,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "parts": [],
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
