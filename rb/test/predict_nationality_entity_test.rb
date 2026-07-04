@@ -42,8 +42,7 @@ class PredictNationalityEntityTest < Minitest::Test
     # LOAD
     predict_nationality_ref01_ent = client.PredictNationality(nil)
     predict_nationality_ref01_match_dt0 = {}
-    predict_nationality_ref01_data_dt0_loaded, err = predict_nationality_ref01_ent.load(predict_nationality_ref01_match_dt0, nil)
-    assert_nil err
+    predict_nationality_ref01_data_dt0_loaded = predict_nationality_ref01_ent.load(predict_nationality_ref01_match_dt0, nil)
     assert !predict_nationality_ref01_data_dt0_loaded.nil?
 
   end

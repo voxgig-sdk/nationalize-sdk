@@ -110,7 +110,7 @@ Alias for `NationalizeSDK.test()`.
 ## PredictNationalityEntity
 
 ```ts
-const predict_nationality = client.PredictNationality()
+const predict_nationality = client.predict_nationality
 ```
 
 ### Fields
@@ -127,7 +127,7 @@ const predict_nationality = client.PredictNationality()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PredictNationality().load({ id: 'predict_nationality_id' })
+const result = await client.predict_nationality.load({ id: 'predict_nationality_id' })
 ```
 
 ### Common Methods

@@ -9,9 +9,12 @@ The TypeScript SDK for the Nationalize API — a type-safe, entity-oriented clie
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/nationalize
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/nationalize-sdk/releases](https://github.com/voxgig-sdk/nationalize-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,7 +23,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NationalizeSDK } from 'nationalize'
+import { NationalizeSDK } from '@voxgig-sdk/nationalize'
 
 const client = new NationalizeSDK({
   apikey: process.env.NATIONALIZE_APIKEY,
@@ -30,7 +33,7 @@ const client = new NationalizeSDK({
 ### 3. Load a predictnationality
 
 ```ts
-const result = await client.PredictNationality().load({ id: 'example_id' })
+const result = await client.predictnationality.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = NationalizeSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.predictnationality.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.predictnationality
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -267,7 +270,7 @@ API path: `/`
 
 ### PredictNationality
 
-Create an instance: `const predict_nationality = client.PredictNationality()`
+Create an instance: `const predict_nationality = client.predict_nationality`
 
 #### Operations
 
@@ -285,7 +288,7 @@ Create an instance: `const predict_nationality = client.PredictNationality()`
 #### Example: Load
 
 ```ts
-const predict_nationality = await client.PredictNationality().load({ id: 'predict_nationality_id' })
+const predict_nationality = await client.predict_nationality.load({ id: 'predict_nationality_id' })
 ```
 
 
@@ -346,7 +349,7 @@ nationalize/
 Import the SDK from the package root:
 
 ```ts
-import { NationalizeSDK } from 'nationalize'
+import { NationalizeSDK } from '@voxgig-sdk/nationalize'
 ```
 
 ### Entity state
@@ -356,11 +359,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const predictnationality = client.predictnationality
+await predictnationality.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// predictnationality.data() now returns the loaded predictnationality data
+// predictnationality.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

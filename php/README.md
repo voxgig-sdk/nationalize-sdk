@@ -9,9 +9,10 @@ The PHP SDK for the Nationalize API — an entity-oriented client using PHP conv
 
 
 ## Install
-```bash
-composer require voxgig-sdk/nationalize
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/nationalize-sdk/releases](https://github.com/voxgig-sdk/nationalize-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -33,9 +34,12 @@ $client = new NationalizeSDK([
 ### 3. Load a predictnationality
 
 ```php
-[$result, $err] = $client->PredictNationality()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->predictnationality()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +50,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = NationalizeSDK::test();
 
-[$result, $err] = $client->Nationalize()->load(["id" => "test01"]);
+$result = $client->predictnationality()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -185,8 +192,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -217,7 +228,7 @@ API path: `/`
 
 ### PredictNationality
 
-Create an instance: `const predict_nationality = client.PredictNationality()`
+Create an instance: `const predict_nationality = client.predict_nationality`
 
 #### Operations
 
@@ -235,7 +246,7 @@ Create an instance: `const predict_nationality = client.PredictNationality()`
 #### Example: Load
 
 ```ts
-const predict_nationality = await client.PredictNationality().load({ id: 'predict_nationality_id' })
+const predict_nationality = await client.predict_nationality.load({ id: 'predict_nationality_id' })
 ```
 
 
@@ -310,11 +321,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$predictnationality = $client->predictnationality();
+$predictnationality->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $predictnationality->dataGet() now returns the loaded predictnationality data
+// $predictnationality->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

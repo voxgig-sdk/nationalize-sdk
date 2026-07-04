@@ -49,8 +49,7 @@ class PredictNationalityEntityTest extends TestCase
         // LOAD
         $predict_nationality_ref01_ent = $client->PredictNationality(null);
         $predict_nationality_ref01_match_dt0 = [];
-        [$predict_nationality_ref01_data_dt0_loaded, $err] = $predict_nationality_ref01_ent->load($predict_nationality_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $predict_nationality_ref01_data_dt0_loaded = $predict_nationality_ref01_ent->load($predict_nationality_ref01_match_dt0, null);
         $this->assertNotNull($predict_nationality_ref01_data_dt0_loaded);
 
     }

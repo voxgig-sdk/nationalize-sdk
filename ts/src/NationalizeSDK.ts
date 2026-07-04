@@ -2,6 +2,8 @@
 
 import { PredictNationalityEntity } from './entity/PredictNationalityEntity'
 
+export type * from './NationalizeTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class NationalizeSDK {
 
 
 
+  _predict_nationality?: PredictNationalityEntity
+
+  // Idiomatic facade: `client.predict_nationality.list()` / `client.predict_nationality.load({ id })`.
+  get predict_nationality(): PredictNationalityEntity {
+    return (this._predict_nationality ??= new PredictNationalityEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.predict_nationality` instead. */
   PredictNationality(data?: any) {
     const self = this
     return new PredictNationalityEntity(self,data)

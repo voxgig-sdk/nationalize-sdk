@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:predict_nationality():list() / client:predict_nationality():load({ id = ... })
+function NationalizeSDK:predict_nationality(data)
+  local EntityMod = require("entity.predict_nationality_entity")
+  if data == nil then
+    if self._predict_nationality == nil then
+      self._predict_nationality = EntityMod.new(self, nil)
+    end
+    return self._predict_nationality
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:predict_nationality() instead.
 function NationalizeSDK:PredictNationality(data)
   local EntityMod = require("entity.predict_nationality_entity")
   return EntityMod.new(self, data)

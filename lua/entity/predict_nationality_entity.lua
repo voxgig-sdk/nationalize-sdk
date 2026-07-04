@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PredictNationalityLoadMatch
+---@param ctrl? table
+---@return PredictNationality
+---@return string? err
 function PredictNationalityEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

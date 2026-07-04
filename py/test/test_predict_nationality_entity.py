@@ -49,8 +49,7 @@ class TestPredictNationalityEntity:
         # LOAD
         predict_nationality_ref01_ent = client.PredictNationality(None)
         predict_nationality_ref01_match_dt0 = {}
-        predict_nationality_ref01_data_dt0_loaded, err = predict_nationality_ref01_ent.load(predict_nationality_ref01_match_dt0, None)
-        assert err is None
+        predict_nationality_ref01_data_dt0_loaded = predict_nationality_ref01_ent.load(predict_nationality_ref01_match_dt0, None)
         assert predict_nationality_ref01_data_dt0_loaded is not None
 
 

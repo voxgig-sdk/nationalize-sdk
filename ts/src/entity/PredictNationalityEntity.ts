@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  PredictNationality,
+  PredictNationalityLoadMatch,
+} from '../NationalizeTypes'
 
 // TODO: needs Entity superclass
-class PredictNationalityEntity extends NationalizeEntityBase {
+class PredictNationalityEntity extends NationalizeEntityBase<PredictNationality> {
 
   constructor(client: NationalizeSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class PredictNationalityEntity extends NationalizeEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: PredictNationalityLoadMatch, ctrl?: Control): Promise<PredictNationality> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class PredictNationalityEntity extends NationalizeEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<PredictNationality> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

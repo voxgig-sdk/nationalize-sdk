@@ -245,6 +245,9 @@ func (sdk *NationalizeSDK) Direct(fetchargs map[string]any) (map[string]any, err
 }
 
 
+// PredictNationality returns a PredictNationality entity bound to this client.
+// Idiomatic usage: client.PredictNationality(nil).List(nil, nil) or
+// client.PredictNationality(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *NationalizeSDK) PredictNationality(data map[string]any) NationalizeEntity {
 	return NewPredictNationalityEntityFunc(sdk, data)
 }
