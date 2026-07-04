@@ -208,13 +208,7 @@ class NationalizeSDK
   end
 
 
-  # Idiomatic facade: client.predict_nationality.list / client.predict_nationality.load({ "id" => ... })
-  def predict_nationality
-    require_relative 'entity/predict_nationality_entity'
-    @predict_nationality ||= PredictNationalityEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.predict_nationality instead.
+  # Canonical facade: client.PredictNationality.list / client.PredictNationality.load({ "id" => ... })
   def PredictNationality(data = nil)
     require_relative 'entity/predict_nationality_entity'
     PredictNationalityEntity.new(self, data)

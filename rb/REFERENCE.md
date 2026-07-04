@@ -87,7 +87,7 @@ same parameters as `direct()`. Raises on error.
 ## PredictNationalityEntity
 
 ```ruby
-predict_nationality = client.predict_nationality
+predict_nationality = client.PredictNationality
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ predict_nationality = client.predict_nationality
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.predict_nationality.load({ "id" => "predict_nationality_id" })
+result = client.PredictNationality.load({ "id" => "predict_nationality_id" })
 ```
 
 ### Common Methods

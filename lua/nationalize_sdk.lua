@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:predict_nationality():list() / client:predict_nationality():load({ id = ... })
-function NationalizeSDK:predict_nationality(data)
+-- Idiomatic facade: client:PredictNationality():list() / client:PredictNationality():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function NationalizeSDK:PredictNationality(data)
   local EntityMod = require("entity.predict_nationality_entity")
   if data == nil then
     if self._predict_nationality == nil then
@@ -253,12 +254,6 @@ function NationalizeSDK:predict_nationality(data)
     end
     return self._predict_nationality
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:predict_nationality() instead.
-function NationalizeSDK:PredictNationality(data)
-  local EntityMod = require("entity.predict_nationality_entity")
   return EntityMod.new(self, data)
 end
 

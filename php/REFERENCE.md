@@ -86,7 +86,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## PredictNationalityEntity
 
 ```php
-$predict_nationality = $client->predict_nationality();
+$predict_nationality = $client->PredictNationality();
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ $predict_nationality = $client->predict_nationality();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->predict_nationality()->load(["id" => "predict_nationality_id"]);
+$result = $client->PredictNationality()->load(["id" => "predict_nationality_id"]);
 ```
 
 ### Common Methods

@@ -84,7 +84,7 @@ same parameters as `direct()`.
 ## PredictNationalityEntity
 
 ```lua
-local predict_nationality = client:predict_nationality(nil)
+local predict_nationality = client:PredictNationality(nil)
 ```
 
 ### Fields
@@ -101,7 +101,7 @@ local predict_nationality = client:predict_nationality(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:predict_nationality():load({ id = "predict_nationality_id" })
+local result, err = client:PredictNationality():load({ id = "predict_nationality_id" })
 ```
 
 ### Common Methods

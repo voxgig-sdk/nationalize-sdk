@@ -220,25 +220,15 @@ class NationalizeSDK:
         }
 
 
-    @property
-    def predict_nationality(self):
-        """Idiomatic facade: client.predict_nationality.list() / client.predict_nationality.load({"id": ...})."""
-        from entity.predict_nationality_entity import PredictNationalityEntity
-        cached = getattr(self, "_predict_nationality", None)
-        if cached is None:
-            cached = PredictNationalityEntity(self, None)
-            self._predict_nationality = cached
-        return cached
-
-    def PredictNationality(self, data=None):
-        # Deprecated: use client.predict_nationality instead.
+    def PredictNationality(self, data=None) -> "PredictNationalityEntity":
+        """Entity factory: client.PredictNationality().list({}) / client.PredictNationality().load({"id": ...})."""
         from entity.predict_nationality_entity import PredictNationalityEntity
         return PredictNationalityEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "NationalizeSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class NationalizeSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.predict_nationality_entity import PredictNationalityEntity

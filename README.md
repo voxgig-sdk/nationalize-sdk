@@ -28,9 +28,9 @@ const client = new NationalizeSDK({
   apikey: process.env.NATIONALIZE_APIKEY,
 })
 
-// Load predictnationality data
-const predictnationality = await client.predictnationality.load({})
-console.log(predictnationality.data)
+// Load predictnationality data (returns a PredictNationality)
+const predictnationality = await client.PredictNationality().load()
+console.log(predictnationality)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -89,8 +89,8 @@ client = NationalizeSDK({
 })
 
 
-# Load a specific predictnationality
-predictnationality = client.predictnationality.load({"id": "example_id"})
+# Load a specific predictnationality (returns the record, raises on error)
+predictnationality = client.PredictNationality().load({"id": "example_id"})
 print(predictnationality)
 ```
 
@@ -105,8 +105,8 @@ $client = new NationalizeSDK([
 ]);
 
 
-// Load a specific predictnationality
-$predictnationality = $client->predictnationality()->load(["id" => "example_id"]);
+// Load a specific predictnationality (returns the bare record; throws on error)
+$predictnationality = $client->PredictNationality()->load(["id" => "example_id"]);
 print_r($predictnationality);
 ```
 
@@ -134,8 +134,8 @@ client = NationalizeSDK.new({
 })
 
 
-# Load a specific predictnationality
-predictnationality = client.predictnationality.load({ "id" => "example_id" })
+# Load a specific predictnationality (returns the bare record; raises on error)
+predictnationality = client.PredictNationality.load({ "id" => "example_id" })
 puts predictnationality
 ```
 
@@ -150,7 +150,7 @@ local client = sdk.new({
 
 
 -- Load a specific predictnationality
-local predictnationality, err = client:predictnationality():load({ id = "example_id" })
+local predictnationality, err = client:PredictNationality():load({ id = "example_id" })
 print(predictnationality)
 ```
 
@@ -163,22 +163,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = NationalizeSDK.test()
-const result = await client.predictnationality.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const predictnationality = await client.PredictNationality().load({ id: 'test01' })
+// predictnationality is a bare PredictNationality populated with mock data
+console.log(predictnationality)
 ```
 
 ### Python
 
 ```python
 client = NationalizeSDK.test()
-result = client.predictnationality.load({"id": "test01"})
+predictnationality = client.PredictNationality().load({"id": "test01"})
+print(predictnationality)
 ```
 
 ### PHP
 
 ```php
-$client = NationalizeSDK::test();
-$result = $client->predictnationality()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = NationalizeSDK::test([
+    "entity" => ["predictnationality" => ["test01" => ["id" => "test01"]]],
+]);
+$predictnationality = $client->PredictNationality()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -193,15 +198,18 @@ result, err := client.PredictNationality(nil).Load(
 ### Ruby
 
 ```ruby
-client = NationalizeSDK.test
-result = client.predictnationality.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = NationalizeSDK.test({
+  "entity" => { "predictnationality" => { "test01" => { "id" => "test01" } } },
+})
+predictnationality = client.PredictNationality.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:predictnationality():load({ id = "test01" })
+local result, err = client:PredictNationality():load({ id = "test01" })
 ```
 
 ## How it works
@@ -249,6 +257,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

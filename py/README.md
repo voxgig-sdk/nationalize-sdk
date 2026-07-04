@@ -36,10 +36,12 @@ client = NationalizeSDK({
 
 ### 3. Load a predictnationality
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.predictnationality.load({"id": "example_id"})
-    print(result)
+    predictnationality = client.PredictNationality().load({"id": "example_id"})
+    print(predictnationality)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -87,8 +89,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = NationalizeSDK.test()
 
-result = client.predictnationality.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+predictnationality = client.PredictNationality().load({"id": "test01"})
+# predictnationality contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -224,7 +227,7 @@ API path: `/`
 
 ### PredictNationality
 
-Create an instance: `const predict_nationality = client.predict_nationality`
+Create an instance: `predict_nationality = client.PredictNationality()`
 
 #### Operations
 
@@ -241,8 +244,8 @@ Create an instance: `const predict_nationality = client.predict_nationality`
 
 #### Example: Load
 
-```ts
-const predict_nationality = await client.predict_nationality.load({ id: 'predict_nationality_id' })
+```python
+predict_nationality = client.PredictNationality().load({"id": "predict_nationality_id"})
 ```
 
 
@@ -316,7 +319,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-predictnationality = client.predictnationality
+predictnationality = client.PredictNationality()
 predictnationality.load({"id": "example_id"})
 
 # predictnationality.data_get() now returns the loaded predictnationality data

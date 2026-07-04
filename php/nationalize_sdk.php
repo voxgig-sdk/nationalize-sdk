@@ -233,10 +233,10 @@ class NationalizeSDK
 
     private $_predict_nationality = null;
 
-    // Idiomatic facade: $client->predict_nationality()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PredictNationality() (PHP method
-    // names are case-insensitive).
-    public function predict_nationality($data = null)
+    // Canonical facade: $client->PredictNationality()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->predict_nationality()
+    // resolves here too.
+    public function PredictNationality($data = null)
     {
         require_once __DIR__ . '/entity/predict_nationality_entity.php';
         if ($data === null) {

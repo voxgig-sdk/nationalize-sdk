@@ -204,14 +204,7 @@ class NationalizeSDK {
 
 
 
-  _predict_nationality?: PredictNationalityEntity
-
-  // Idiomatic facade: `client.predict_nationality.list()` / `client.predict_nationality.load({ id })`.
-  get predict_nationality(): PredictNationalityEntity {
-    return (this._predict_nationality ??= new PredictNationalityEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.predict_nationality` instead. */
+  // Entity access: `client.PredictNationality().list()` / `client.PredictNationality().load({ id })`.
   PredictNationality(data?: any) {
     const self = this
     return new PredictNationalityEntity(self,data)

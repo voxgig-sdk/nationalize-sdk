@@ -34,8 +34,9 @@ client = NationalizeSDK.new({
 
 ```ruby
 begin
-  result = client.predictnationality.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare PredictNationality record (raises on error).
+  predictnationality = client.PredictNationality.load({ "id" => "example_id" })
+  puts predictnationality
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = NationalizeSDK.test
+client = NationalizeSDK.test({
+  "entity" => { "predictnationality" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.predictnationality.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+predictnationality = client.PredictNationality.load({ "id" => "test01" })
+puts predictnationality
 ```
 
 ### Use a custom fetch function
@@ -223,7 +228,7 @@ API path: `/`
 
 ### PredictNationality
 
-Create an instance: `const predict_nationality = client.predict_nationality`
+Create an instance: `predict_nationality = client.PredictNationality`
 
 #### Operations
 
@@ -240,8 +245,9 @@ Create an instance: `const predict_nationality = client.predict_nationality`
 
 #### Example: Load
 
-```ts
-const predict_nationality = await client.predict_nationality.load({ id: 'predict_nationality_id' })
+```ruby
+# load returns the bare PredictNationality record (raises on error).
+predict_nationality = client.PredictNationality.load({ "id" => "predict_nationality_id" })
 ```
 
 
@@ -316,7 +322,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-predictnationality = client.predictnationality
+predictnationality = client.PredictNationality
 predictnationality.load({ "id" => "example_id" })
 
 # predictnationality.data_get now returns the loaded predictnationality data
