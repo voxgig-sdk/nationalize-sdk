@@ -21,7 +21,7 @@ PredictNationality = Struct.new(
   keyword_init: true
 )
 
-# Match filter for PredictNationality#load (any subset of PredictNationality fields).
+# Request payload for PredictNationality#load.
 #
 # @!attribute [rw] country
 #   @return [Array, nil]

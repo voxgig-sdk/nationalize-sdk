@@ -91,8 +91,8 @@ local predict_nationality = client:PredictNationality(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `country` | `table` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -101,7 +101,7 @@ local predict_nationality = client:PredictNationality(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PredictNationality():load({ id = "predict_nationality_id" })
+local result, err = client:PredictNationality():load()
 ```
 
 ### Common Methods

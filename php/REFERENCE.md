@@ -46,11 +46,11 @@ $client = NationalizeSDK::test();
 
 Create a new `PredictNationalityEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): NationalizeUtility`
 
 Return a copy of the SDK utility object.
 
@@ -93,8 +93,8 @@ $predict_nationality = $client->PredictNationality();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `country` | `array` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -103,24 +103,24 @@ $predict_nationality = $client->PredictNationality();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->PredictNationality()->load(["id" => "predict_nationality_id"]);
+$result = $client->PredictNationality()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -129,7 +129,7 @@ Set the entity match criteria.
 Create a new `PredictNationalityEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

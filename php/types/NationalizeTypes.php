@@ -19,7 +19,7 @@ class PredictNationality
     public ?string $name = null;
 }
 
-/** Match filter for PredictNationality#load (any subset of PredictNationality fields). */
+/** Request payload for PredictNationality#load. */
 class PredictNationalityLoadMatch
 {
     public ?array $country = null;

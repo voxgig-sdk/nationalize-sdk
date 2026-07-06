@@ -14,8 +14,7 @@ type PredictNationality struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// PredictNationalityLoadMatch mirrors the predict_nationality fields as an all-optional match
-// filter (Go analog of Partial<PredictNationality>).
+// PredictNationalityLoadMatch is the typed request payload for PredictNationality.LoadTyped.
 type PredictNationalityLoadMatch struct {
 	Country *[]any `json:"country,omitempty"`
 	Name *string `json:"name,omitempty"`

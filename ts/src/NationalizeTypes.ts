@@ -10,5 +10,8 @@ export interface PredictNationality {
   name?: string
 }
 
-export type PredictNationalityLoadMatch = Partial<PredictNationality>
+export interface PredictNationalityLoadMatch {
+  country?: any[]
+  name?: string
+}
 

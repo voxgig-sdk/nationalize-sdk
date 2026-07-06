@@ -8,7 +8,7 @@ Complete API reference for the Nationalize Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'nationalize_sdk'
+require_relative 'Nationalize_sdk'
 
 client = NationalizeSDK.new(options)
 ```
@@ -94,8 +94,8 @@ predict_nationality = client.PredictNationality
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `country` | `Array` | No |  |
+| `name` | `String` | No |  |
 
 ### Operations
 
@@ -104,7 +104,7 @@ predict_nationality = client.PredictNationality
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.PredictNationality.load({ "id" => "predict_nationality_id" })
+result = client.PredictNationality.load()
 ```
 
 ### Common Methods

@@ -98,8 +98,8 @@ predict_nationality := client.PredictNationality(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `country` | `[]any` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -108,7 +108,7 @@ predict_nationality := client.PredictNationality(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.PredictNationality(nil).Load(map[string]any{"id": "predict_nationality_id"}, nil)
+result, err := client.PredictNationality(nil).Load(nil, nil)
 ```
 
 ### Common Methods

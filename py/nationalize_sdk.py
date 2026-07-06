@@ -221,7 +221,7 @@ class NationalizeSDK:
 
 
     def PredictNationality(self, data=None) -> "PredictNationalityEntity":
-        """Entity factory: client.PredictNationality().list({}) / client.PredictNationality().load({"id": ...})."""
+        """Entity factory: client.PredictNationality().list() / client.PredictNationality().load({"id": ...})."""
         from entity.predict_nationality_entity import PredictNationalityEntity
         return PredictNationalityEntity(self, data)
 

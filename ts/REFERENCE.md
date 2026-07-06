@@ -117,8 +117,8 @@ const predict_nationality = client.PredictNationality()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `country` | `any[]` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -127,7 +127,7 @@ const predict_nationality = client.PredictNationality()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PredictNationality().load({ id: 'predict_nationality_id' })
+const result = await client.PredictNationality().load()
 ```
 
 ### Common Methods

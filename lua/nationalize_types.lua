@@ -11,6 +11,8 @@
 ---@field name? string
 
 ---@class PredictNationalityLoadMatch
+---@field country? table
+---@field name? string
 
 local M = {}
 

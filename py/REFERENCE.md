@@ -88,8 +88,8 @@ predict_nationality = client.PredictNationality()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `country` | `list` | No |  |
+| `name` | `str` | No |  |
 
 ### Operations
 
@@ -98,7 +98,7 @@ predict_nationality = client.PredictNationality()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.PredictNationality().load({"id": "predict_nationality_id"})
+result = client.PredictNationality().load()
 ```
 
 ### Common Methods
