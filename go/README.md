@@ -53,12 +53,12 @@ func main() {
         "apikey": os.Getenv("NATIONALIZE_APIKEY"),
     })
 
-    // Load a single predictnationality — the value is the loaded record.
-    predictnationality, err := client.PredictNationality(nil).Load(nil, nil)
+    // Load a single predictNationality — the value is the loaded record.
+    predictNationality, err := client.PredictNationality(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(predictnationality)
+    fmt.Println(predictNationality)
 }
 ```
 
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-predictnationality, err := client.PredictNationality(nil).Load(
+predictNationality, err := client.PredictNationality(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(predictnationality) // the returned mock data
+fmt.Println(predictNationality) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -250,9 +250,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    predictnationality, err := client.PredictNationality(nil).Load(nil, nil)
+    predictNationality, err := client.PredictNationality(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // predictnationality is the returned record
+    // predictNationality is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -277,7 +277,7 @@ API path: `/`
 
 ### PredictNationality
 
-Create an instance: `predict_nationality := client.PredictNationality(nil)`
+Create an instance: `predictNationality := client.PredictNationality(nil)`
 
 #### Operations
 
@@ -295,11 +295,11 @@ Create an instance: `predict_nationality := client.PredictNationality(nil)`
 #### Example: Load
 
 ```go
-predict_nationality, err := client.PredictNationality(nil).Load(nil, nil)
+predictNationality, err := client.PredictNationality(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(predict_nationality) // the loaded record
+fmt.Println(predictNationality) // the loaded record
 ```
 
 

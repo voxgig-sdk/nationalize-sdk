@@ -91,7 +91,8 @@ same parameters as `Direct()`.
 ## PredictNationalityEntity
 
 ```go
-predict_nationality := client.PredictNationality(nil)
+predictNationality := client.PredictNationality(nil)
+fmt.Println(predictNationality.GetName()) // "predict_nationality"
 ```
 
 ### Fields
@@ -109,6 +110,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.PredictNationality(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

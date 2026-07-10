@@ -8,16 +8,23 @@ main: {
         email: "info@genderize.io"
       }
       description: "A simple API that estimates the nationality of a person based on a last name."
+      security: {
+        in: "query"
+        name: "apikey"
+        prefix: ""
+        scheme: "ApiKeyAuth"
+        type: "apiKey"
+      }
       servers: [
         {
           description: "Production server"
           url: "https://api.nationalize.io"
         }
       ]
+      summary: "A simple API that estimates the nationality of a person based on a last name."
       termsOfService: "https://nationalize.io/terms"
       title: "Nationalize API"
       version: "1.0.0"
+      website: "https://nationalize.io/documentation"
     }
   }
-}
-

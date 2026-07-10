@@ -39,7 +39,7 @@ class Config {
     base: 'https://api.nationalize.io',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {
