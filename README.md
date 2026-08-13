@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = NationalizeSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = NationalizeSDK.test({
+  entity: {
+    predict_nationality: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const predictnationality = await client.PredictNationality().load()
-// predictnationality is a bare PredictNationality populated with mock data
+// predictnationality is the PredictNationality entity, populated with mock data
+// — call predictnationality.data() for the record itself
 console.log(predictnationality)
 ```
 
@@ -189,7 +198,7 @@ $client = new NationalizeSDK([
 ]);
 
 
-// Load a specific predictnationality (returns the bare record; throws on error)
+// Load a specific predictnationality (returns the ENTITY; call data_get() for the record; throws on error)
 $predictnationality = $client->PredictNationality()->load();
 print_r($predictnationality);
 ```
@@ -221,7 +230,7 @@ client = NationalizeSDK.new({
 })
 
 
-# Load a specific predictnationality (returns the bare record; raises on error)
+# Load a specific predictnationality (returns the ENTITY; call data_get for the record)
 predictnationality = client.PredictNationality.load()
 puts predictnationality
 ```
@@ -357,6 +366,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.nationalize.io](https://api.nationalize.io)
 

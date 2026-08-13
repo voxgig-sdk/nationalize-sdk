@@ -36,7 +36,7 @@ client = NationalizeSDK.new({
 
 ```ruby
 begin
-  # load returns the bare PredictNationality record (raises on error).
+  # load returns the ENTITY — call data_get for the PredictNationality record (raises on error).
   predictnationality = client.PredictNationality.load()
   puts predictnationality
 rescue => err
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = NationalizeSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 predictnationality = client.PredictNationality.load()
 puts predictnationality
 ```
@@ -270,7 +271,7 @@ Create an instance: `predict_nationality = client.PredictNationality`
 #### Example: Load
 
 ```ruby
-# load returns the bare PredictNationality record (raises on error).
+# load returns the ENTITY — call data_get for the PredictNationality record (raises on error).
 predict_nationality = client.PredictNationality.load()
 ```
 

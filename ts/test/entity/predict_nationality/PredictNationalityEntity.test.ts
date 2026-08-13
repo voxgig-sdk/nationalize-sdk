@@ -62,7 +62,7 @@ describe('PredictNationalityEntity', async () => {
     // LOAD
     const predict_nationality_ref01_ent = client.PredictNationality()
     const predict_nationality_ref01_match_dt0: any = {}
-    const predict_nationality_ref01_data_dt0 = await predict_nationality_ref01_ent.load(predict_nationality_ref01_match_dt0)
+    const predict_nationality_ref01_data_dt0 = (await predict_nationality_ref01_ent.load(predict_nationality_ref01_match_dt0)).data()
     assert(null != predict_nationality_ref01_data_dt0)
 
 

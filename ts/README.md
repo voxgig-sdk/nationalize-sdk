@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 const client = NationalizeSDK.test()
 
 const predictnationality = await client.PredictNationality().load()
-// predictnationality is a bare entity populated with mock response data
+// predictnationality is the entity, populated with mock response data
+// — call predictnationality.data() for the record itself
 console.log(predictnationality)
 ```
 

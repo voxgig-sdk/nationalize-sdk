@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import NationalizeSDK
-from core.error import NationalizeError
-from core.result import NationalizeResult
-from core.response import NationalizeResponse
-from core.spec import NationalizeSpec
-from feature.base_feature import NationalizeBaseFeature
+from projectname_sdk.core.error import NationalizeError
+from projectname_sdk.core.result import NationalizeResult
+from projectname_sdk.core.response import NationalizeResponse
+from projectname_sdk.core.spec import NationalizeSpec
+from projectname_sdk.feature.base_feature import NationalizeBaseFeature
 
 
 def _client():

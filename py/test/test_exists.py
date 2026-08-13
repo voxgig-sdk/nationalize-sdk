@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Nationalize SDK exists test
 
 import pytest
 from nationalize_sdk import NationalizeSDK

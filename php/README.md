@@ -37,7 +37,7 @@ $client = new NationalizeSDK([
 
 ```php
 try {
-    // load() returns the bare PredictNationality record (throws on error).
+    // load() returns the ENTITY — call data_get() for the PredictNationality record (throws on error).
     $predictnationality = $client->PredictNationality()->load();
     print_r($predictnationality);
 } catch (\Throwable $err) {
@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = NationalizeSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $predictnationality = $client->PredictNationality()->load();
 print_r($predictnationality);
 ```
@@ -226,7 +227,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -280,7 +281,7 @@ Create an instance: `$predict_nationality = $client->PredictNationality();`
 #### Example: Load
 
 ```php
-// load() returns the bare PredictNationality record (throws on error).
+// load() returns the ENTITY — call data_get() for the PredictNationality record (throws on error).
 $predict_nationality = $client->PredictNationality()->load();
 ```
 

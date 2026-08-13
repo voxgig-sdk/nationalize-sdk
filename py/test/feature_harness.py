@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import NationalizeControl
-from core.error import NationalizeError
-from core.result import NationalizeResult
-from core.spec import NationalizeSpec
+from nationalize_sdk.config import make_config
+from nationalize_sdk.features import _make_feature
+from nationalize_sdk.core.control import NationalizeControl
+from nationalize_sdk.core.error import NationalizeError
+from nationalize_sdk.core.result import NationalizeResult
+from nationalize_sdk.core.spec import NationalizeSpec
 
 
 # True when this SDK was generated with the named feature.
