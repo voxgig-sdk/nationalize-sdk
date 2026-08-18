@@ -28,7 +28,7 @@ class NationalizeSDK
     utility = NationalizeUtility.new
     @_utility = utility
 
-    config = NationalizeConfig.make_config
+    config = NationalizeConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

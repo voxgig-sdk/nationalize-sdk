@@ -40,7 +40,7 @@ class NationalizeSDK
         $utility = new NationalizeUtility();
         $this->_utility = $utility;
 
-        $config = NationalizeConfig::make_config();
+        $config = NationalizeConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
