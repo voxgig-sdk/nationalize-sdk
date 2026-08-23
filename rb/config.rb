@@ -19,6 +19,9 @@ module NationalizeConfig
     {
       "main" => {
         "name" => "Nationalize",
+        "slug" => "nationalize",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {

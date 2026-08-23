@@ -33,6 +33,9 @@ class NationalizeConfig
         return [
             "main" => [
                 "name" => "Nationalize",
+                "slug" => "nationalize",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
