@@ -45,7 +45,7 @@ client = NationalizeSDK({
 
 ```python
 try:
-    predictnationality = client.PredictNationality().load()
+    predictnationality = client.PredictNationality().load({"name": []})
     print(predictnationality)
 except Exception as err:
     print(f"load failed: {err}")
@@ -58,7 +58,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    predictnationality = client.PredictNationality().load()
+    predictnationality = client.PredictNationality().load({"name": []})
     print(predictnationality)
 except Exception as err:
     print(f"load failed: {err}")
@@ -127,7 +127,7 @@ client = NationalizeSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-predictnationality = client.PredictNationality().load()
+predictnationality = client.PredictNationality().load({"name": []})
 # predictnationality contains the mock response record
 ```
 
@@ -278,8 +278,31 @@ Create an instance: `predict_nationality = client.PredictNationality()`
 #### Example: Load
 
 ```python
-predict_nationality = client.PredictNationality().load()
+predict_nationality = client.PredictNationality().load({"name": []})
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -358,7 +381,7 @@ stores the returned data and match criteria internally.
 
 ```python
 predictnationality = client.PredictNationality()
-predictnationality.load()
+predictnationality.load({"name": []})
 
 # predictnationality.data_get() now returns the predictnationality data from the last load
 # predictnationality.match_get() returns the last match criteria

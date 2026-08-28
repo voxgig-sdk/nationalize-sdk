@@ -23,13 +23,13 @@ PredictNationality = Struct.new(
 
 # Request payload for PredictNationality#load.
 #
-# @!attribute [rw] country
-#   @return [Array, nil]
+# @!attribute [rw] apikey
+#   @return [String, nil]
 #
 # @!attribute [rw] name
-#   @return [String, nil]
+#   @return [Array]
 PredictNationalityLoadMatch = Struct.new(
-  :country,
+  :apikey,
   :name,
   keyword_init: true
 )

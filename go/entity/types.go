@@ -20,8 +20,8 @@ type PredictNationality struct {
 
 // PredictNationalityLoadMatch is the typed request payload for PredictNationality.LoadTyped.
 type PredictNationalityLoadMatch struct {
-	Country *[]any `json:"country,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Apikey *string `json:"apikey,omitempty"`
+	Name []any `json:"name"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

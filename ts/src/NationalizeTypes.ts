@@ -11,7 +11,7 @@ export interface PredictNationality {
 }
 
 export interface PredictNationalityLoadMatch {
-  country?: any[]
-  name?: string
+  apikey?: string
+  name: any[]
 }
 

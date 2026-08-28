@@ -22,7 +22,7 @@ class PredictNationality
 /** Request payload for PredictNationality#load. */
 class PredictNationalityLoadMatch
 {
-    public ?array $country = null;
-    public ?string $name = null;
+    public ?string $apikey = null;
+    public array $name;
 }
 

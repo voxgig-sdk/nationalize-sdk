@@ -21,6 +21,9 @@ class PredictNationality(TypedDict, total=False):
     name: str
 
 
-class PredictNationalityLoadMatch(TypedDict, total=False):
-    country: list
-    name: str
+class PredictNationalityLoadMatchRequired(TypedDict):
+    name: list
+
+
+class PredictNationalityLoadMatch(PredictNationalityLoadMatchRequired, total=False):
+    apikey: str
