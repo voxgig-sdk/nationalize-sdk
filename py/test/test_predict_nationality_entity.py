@@ -90,7 +90,7 @@ def _predict_nationality_basic_setup(extra):
         "NATIONALIZE_TEST_PREDICT_NATIONALITY_ENTID": idmap,
         "NATIONALIZE_TEST_LIVE": "FALSE",
         "NATIONALIZE_TEST_EXPLAIN": "FALSE",
-        "NATIONALIZE_APIKEY": "NONE",
+        "NATIONALIZE_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -100,6 +100,10 @@ def _predict_nationality_basic_setup(extra):
 
     if env.get("NATIONALIZE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("NATIONALIZE_APIKEY"),
             },
