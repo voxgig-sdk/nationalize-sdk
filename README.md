@@ -105,7 +105,7 @@ local result, err = client:PredictNationality():load({ name = {} })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/nationalize` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nationalize-sdk/releases) |
+| TypeScript | `@voxgig-sdk/nationalize-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nationalize-sdk/releases) |
 | Python | `voxgig-sdk-nationalize` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nationalize-sdk/releases) |
 | PHP | `voxgig-sdk/nationalize` | publish pending — [install from git tag](https://github.com/voxgig-sdk/nationalize-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/nationalize-sdk/go` | `go get github.com/voxgig-sdk/nationalize-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:PredictNationality():load({ name = {} })
 ### TypeScript
 
 ```ts
-import { NationalizeSDK } from '@voxgig-sdk/nationalize'
+import { NationalizeSDK } from '@voxgig-sdk/nationalize-sdk'
 
 const client = new NationalizeSDK({
   apikey: process.env.NATIONALIZE_APIKEY,

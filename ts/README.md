@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { NationalizeSDK } from '@voxgig-sdk/nationalize'
+import { NationalizeSDK } from '@voxgig-sdk/nationalize-sdk'
 
 const client = new NationalizeSDK({
   apikey: process.env.NATIONALIZE_APIKEY,
@@ -409,7 +409,7 @@ nationalize/
 Import the SDK from the package root:
 
 ```ts
-import { NationalizeSDK } from '@voxgig-sdk/nationalize'
+import { NationalizeSDK } from '@voxgig-sdk/nationalize-sdk'
 ```
 
 ### Entity state
